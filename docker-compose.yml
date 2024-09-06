@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend_app
+    ports:
+      - "8888:8888"
+    networks:
+      - globesoft-network
+
+  frontend:
+    build: ./frontend_app
+    depends_on:
+      - backend
+    ports:
+      - "8080:8080"
+    networks:
+      - globesoft-network
+networks:
+  globesoft-network:
+    driver: bridge
